@@ -1,28 +1,63 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div style="padding: 0 !important;">
+    <vs-navbar
+            target-scroll="#padding-scroll-content"
+            padding-scroll
+            left-collapsed
+            square
+            fixed
+               v-model="active">
+      <template #left>
+        <img src="/logo2.png" alt="">
+      </template>
+      <vs-navbar-item
+              to="/"
+              :active="$route.path == '/'"
+
+      >
+        Home
+      </vs-navbar-item>
+      <vs-navbar-item
+              to="/explore"
+              :active="$route.path == '/explore'"
+      >
+        Explore
+      </vs-navbar-item>
+      <vs-navbar-item
+              :active="$route.path == '/search'"
+              id="components"
+      >
+
+        Search
+      </vs-navbar-item>
+      <template #right>
+        <vs-button flat >About this project</vs-button>
+        <vs-button>Follow me</vs-button>
+      </template>
+    </vs-navbar>
+    <div id="padding-scroll-content" class="square">
+
+
+      <router-view></router-view>
+
+      <vs-row class="p-5">
+
+      </vs-row>
+
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+name: 'App',
+data(){
+  return{
+    active:'/'
   }
 }
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
+</script>
+<style>
+
 </style>
